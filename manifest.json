@@ -1,0 +1,36 @@
+{
+	"manifest_version": 3,
+	"name": "Dark Mode",
+	"description": "Turns on the dark mode for a web page.",
+	"version": "1.0",
+	"permissions": ["scripting", "storage"],
+	"icons": {
+		"48": "icons/eclipse_48.png",
+    "64": "icons/eclipse_64.png",
+    "128": "icons/eclipse_128.png",
+    "256": "icons/eclipse_256.png",
+    "512": "icons/eclipse_512.png"
+	},
+	"host_permissions": ["http://*/", "https://*/"],
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["src/support.js", "src/main.js"],
+			"run_at": "document_idle"
+		}
+	],
+	"background": {
+		"service_worker": "src/background.js",
+		"type": "module"
+	},
+	"action": {
+    "default_title": "In dark mode.\nReload the page after",
+    "default_icon": {
+      "48": "icons/dark_48.png",
+      "64": "icons/dark_64.png",
+      "128": "icons/dark_128.png",
+      "256": "icons/dark_256.png",
+      "512": "icons/dark_512.png"
+    }
+  }
+}
