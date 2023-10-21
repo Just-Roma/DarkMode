@@ -1,0 +1,86 @@
+/*
+This file has only one intention: preserve the main content of a web page while being as simple and general as possible.
+Though defining multiple specific CSS files would probably do a better job, it is hard and very time-consuming.
+
+Notes:
+- MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb is a highly likely non existent ID that is used to increase specificity of a rule.
+- :is shall guarantee that a whole rule would not be invalidated.
+- you can also append :not(#some_id) to a rule to further increase specificity.
+  :not(#some_id):not(#some_id) would have specificity (2,0,0).
+  But it is better to be careful with it, since it seems to be unspecified.
+*/
+/*
+First set common properties for all tags, which are not in :not(...)
+
+Transparency plays a huge role for some elements.
+Examples:
+- <div> can be transparent by default and overlay partially/completely the visible content,
+  so, setting some non-transparent background would hide something/everything on the page.
+- <a> can also overlay content.
+- Presumably other tags can also have similar behaviour.
+
+Unfortunately, with pure CSS, it is very hard (probably even impossible in general case)
+to always set a proper background, without corrupting the page's appearance.
+So, the decision was made to make all elements transparent. That shall at least guarantee
+that the main content won't be accidentally hidden. That comes at a price: some holders,
+which are a normal part of content, will be partially transparent. That would make the
+page look worse and diminish readability of internal content.
+*/
+:not(:is(head, link, style, title, meta, base, br, wbr, script, noscript, progress, iframe, embed, object, portal, source, #MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  color: white !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/*
+Now try to improve the page's appearance a little bit.
+At least some tags shall not introduce any visual quirks, when their background is not transparent.
+*/
+html:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+body:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+header:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+nav:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+aside:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+main:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+section:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+article:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+footer:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h1:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h2:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h3:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h4:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h5:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+h6:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+ul:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+input:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
+button:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  background: rgb(27, 27, 27) !important;
+}
+
+/*
+Setting grey background-color to images is important, because they can be partially transparent sometimes.
+Though it is possible that an image would have grey content and setting a grey background would basically
+corrupt it, most images have some non-grey content, so in most cases the content shall be preserved.
+*/
+img:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  color: black !important;
+  background-color: rgb(150,150,150) !important;
+}
+
+/*
+Here are the definitions for all tags, which contain some text.
+*/
+p:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  opacity: 1 !important;
+  background-color: rgb(27,27,27) !important;
+}
+
+a:link:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  color: #3085C3 !important;
+  /* opacity: 1 !important; */
+}
+
+a:visited:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+  color: #DA0C81 !important;
+  /* opacity: 1 !important; */
+}
