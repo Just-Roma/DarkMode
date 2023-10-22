@@ -3,7 +3,7 @@
 	"name": "Dark Mode",
 	"description": "Turns on the dark mode for a web page.",
 	"version": "1.0",
-	"permissions": ["scripting", "storage"],
+	"permissions": ["scripting", "tabs", "storage"],
 	"icons": {
 		"48": "icons/eclipse_48.png",
     "64": "icons/eclipse_64.png",
