@@ -8,9 +8,6 @@ Notes:
 - you can also append :not(#some_id) to a rule to further increase specificity.
   :not(#some_id):not(#some_id) would have specificity (2,0,0).
   But it is better to be careful with it, since it seems to be unspecified.
-*/
-/*
-First set common properties for all tags, which are not in :not(...)
 
 Transparency plays a huge role for some elements.
 Examples:
@@ -24,11 +21,12 @@ to always set a proper background, without corrupting the page's appearance.
 So, the decision was made to make all elements transparent. That shall at least guarantee
 that the main content won't be accidentally hidden. That comes at a price: some holders,
 which are a normal part of content, will be partially transparent. That would make the
-page look worse and diminish readability of internal content.
+page look worse and diminish readability of internal content to some extent.
+
+First set common properties for all tags, which are not in :not(...)
 */
 :not(:is(head, link, style, title, meta, base, br, wbr, script, noscript, progress, iframe, embed, object, portal, source, #MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
   color: white !important;
-  background: transparent !important;
   background-color: transparent !important;
 }
 
@@ -36,25 +34,22 @@ page look worse and diminish readability of internal content.
 Now try to improve the page's appearance a little bit.
 At least some tags shall not introduce any visual quirks, when their background is not transparent.
 */
-html:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-body:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-header:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-nav:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-aside:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-main:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-section:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-article:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-footer:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h1:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h2:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h3:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h4:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h5:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-h6:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-ul:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-input:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-button:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)),
-form:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+header:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+nav:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+aside:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+main:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+section:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+article:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+footer:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+div:has(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb,
+>header,>nav,>aside,>main,>section,>article,>footer,>p,>a,>h1,>h2,>h3,>h4,>h5,>h6,
+>dl,>ol,>ul,>span,>hgroup,>search,>blockquote,>menu,>pre,>abbr,>cite,>code,>data,>q,
+>time,>button,>datalist,>fieldset,>form,>input,>label,>meter,>output,>select,>textarea,
+>svg,>img,>math,>canvas,>table,>details,>dialog,>summary,>area,>audio,>map,>video,
+>embed,>iframe,>picture,>object)
+{
   background: rgb(27, 27, 27) !important;
 }
 
@@ -63,25 +58,41 @@ Setting grey background-color to images is important, because they can be partia
 Though it is possible that an image would have grey content and setting a grey background would basically
 corrupt it, most images have some non-grey content, so in most cases the content shall be preserved.
 */
-img:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: black !important;
   background-color: rgb(150,150,150) !important;
 }
 
 /*
-Here are the definitions for all tags, which contain some text.
+Here are the definitions for all tags, which contain text.
 */
-p:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h1:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h2:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h3:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h4:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h5:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h6:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   opacity: 1 !important;
-  background-color: rgb(27,27,27) !important;
 }
 
-a:link:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: #3085C3 !important;
-  /* opacity: 1 !important; */
+  opacity: 1 !important;
 }
 
-a:visited:not(:is(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
+a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: #DA0C81 !important;
-  /* opacity: 1 !important; */
+  opacity: 1 !important;
+}
+/* Do not set just span to anything, it would corrupt some stuff */
+span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
+span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after{
+  color: white !important;
+  background: rgb(27, 27, 27) !important;
+}
+
+li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
+span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a{
+  background: rgb(27, 27, 27) !important;
 }
