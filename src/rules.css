@@ -43,6 +43,8 @@ main:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 section:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 article:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 footer:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+ul:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 div:has(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb,
 >header,>nav,>aside,>main,>section,>article,>footer,>p,>a,>h1,>h2,>h3,>h4,>h5,>h6,
 >dl,>ol,>ul,>span,>hgroup,>search,>blockquote,>menu,>pre,>abbr,>cite,>code,>data,>q,
@@ -52,6 +54,7 @@ div:has(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb,
 {
   background: rgb(27, 27, 27) !important;
 }
+
 
 /*
 Setting grey background-color to images is important, because they can be partially transparent sometimes.
@@ -94,4 +97,14 @@ span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after{
 li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
 span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a{
   background: rgb(27, 27, 27) !important;
+}
+
+input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+  border: red solid 1px !important;
+  border-radius: 5px;
+}
+
+textarea:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+  border: rgb(0, 255, 255) solid 1px !important;
+  border-radius: 5px;
 }
