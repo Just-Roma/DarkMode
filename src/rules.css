@@ -45,12 +45,7 @@ article:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 footer:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 ul:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-div:has(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb,
->header,>nav,>aside,>main,>section,>article,>footer,>p,>a,>h1,>h2,>h3,>h4,>h5,>h6,
->dl,>ol,>ul,>span,>hgroup,>search,>blockquote,>menu,>pre,>abbr,>cite,>code,>data,>q,
->time,>button,>datalist,>fieldset,>form,>input,>label,>meter,>output,>select,>textarea,
->svg,>img,>math,>canvas,>table,>details,>dialog,>summary,>area,>audio,>map,>video,
->embed,>iframe,>picture,>object)
+div:has(>:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb,div))
 {
   background: rgb(27, 27, 27) !important;
 }
