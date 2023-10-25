@@ -24,10 +24,10 @@ __Web extension__:
 7. :tada:
 8. Well, not really :tada: if you use Firefox.  
    Open about:config in the address bar and set css.has-selector to true.  
-   If you dont want to activate the extansion manually for each website, then  
+   If you dont want to activate the extension manually for each website, then  
    you would also have to modify permissions. If you use Firefox ~ 116.0.0, then:  
    Type about:addons, press enter, choose "Extensions" in the left menu,  
-   then click on "..." button, choose "manage" option, then "permissions" tab.  
+   then click on "..." button, choose "Manage" option, then "Permissions" tab.  
    Activate the "Access your data for all websites". Now it should work.  
    This sequence may vary depending on the browser version.
    
