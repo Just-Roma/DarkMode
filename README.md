@@ -28,7 +28,7 @@ __Web extension__:
    you would also have to modify permissions. If you use Firefox ~ 116.0.0, then:  
    Type about:addons, press enter, choose "Extensions" in the left menu,  
    then click on "..." button, choose "manage" option, then "permissions" tab.  
-   Allow the "Run on sites with restrictions". Now it should work.  
+   Activate the "Access your data for all websites". Now it should work.  
    This sequence may vary depending on the browser version.
    
 - - - -
