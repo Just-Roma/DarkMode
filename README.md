@@ -16,7 +16,7 @@ __Web extension__:
       - about:debugging#/runtime/this-firefox
 6. Depending on the browser do the following:
    1. Chrome/Opera/Edge:  
-      Click on the "Load unpacked" or on equivalent in your browser's language.  
+      Click on "Load unpacked" or on equivalent in your browser's language.  
       Choose the unzipped folder and click open or press enter.  
    2. Firefox:  
       Click on "Load Temporary Add-on" or on equivalent in your browser's language.  
