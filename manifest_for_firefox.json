@@ -15,7 +15,7 @@
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["src/support.js", "src/analyzer.js", "src/main.js"],
+			"js": ["src/support.js", "src/main.js"],
 			"run_at": "document_idle"
 		}
 	],
