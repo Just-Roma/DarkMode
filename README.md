@@ -29,8 +29,8 @@ __Web extension__:
    Type about:addons, press enter, choose "Extensions" in the left menu,  
    then click on "..." button, choose "Manage" option, then "Permissions" tab.  
    Activate the "Access your data for all websites". Now it should work.  
-   This sequence may vary depending on the browser version.
-   
+   This sequence may vary depending on the browser version.  
+   You should also have at least Firefox 109 to support Manifest V3.
 - - - -
 __Stand-alone script__:
 1. Open the "I_dont_want_extensions" folder, then execute_me.js.
