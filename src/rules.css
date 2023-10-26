@@ -51,11 +51,20 @@ div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
 div:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   background-color: transparent !important;
 }
-/* separate from above because it seems that putting them together 
-invalidates all rules in firefox. */
+/*
+Separate from above because it seems that putting them together invalidates all rules in firefox.
+The rule means this: select parent <div>s, which have a <div> as child but does not have anything else.
+*/
 div:has(>div):not(:has(>:not(div))):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   background-color: transparent !important;
 }
+/*
+If <div> tag has any child that is not <div>, then remove any background images, since these can be white.
+*/
+div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+  background-image: none !important;
+}
+
 /*
 Setting grey background-color to images is important, because they can be partially transparent sometimes.
 Though it is possible that an image would have grey content and setting a grey background would basically
