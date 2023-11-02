@@ -31,8 +31,8 @@ First set common properties for all tags, which are not in :not(...)
 }
 
 /*
-Now try to improve the page's appearance a little bit.
-At least some tags shall not introduce any visual quirks, when their background is not transparent.
+Set dark background to some elements-containers. It seems to be impossible to target anonym boxes with CSS,
+so all <div> tags get dark background (eg anonymous box  <div>some txt, which will be anonym</div>).
 */
 html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
@@ -48,12 +48,17 @@ select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   background-color: rgb(27, 27, 27) !important;
 }
+/*
+Empty divs can sometimes overlay content. Obviously they dont hold anything, so make them transparent.
+*/
 div:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   background-color: transparent !important;
 }
 /*
 Separate from above because it seems that putting them together invalidates all rules in firefox.
-The rule means this: select parent <div>s, which have a <div> as child but does not have anything else.
+The rule means this: select parent <div>s, which have one/several <div> children but do not have anything else.
+Such divs can also overlay content, so it is better to make them transparent, though it would make the
+overall appearance of a page worse sometimes.
 */
 div:has(>div):not(:has(>:not(div))):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   background-color: transparent !important;
@@ -66,30 +71,21 @@ div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
 }
 
 /*
-Setting grey background-color to images is important, because they can be partially transparent sometimes.
-Though it is possible that an image would have grey content and setting a grey background would basically
-corrupt it, most images have some non-grey content, so in most cases the content shall be preserved.
+Inverting the color of images shall do a good job in most cases.
+color property is set to black because it will be inverted to white for alt text.
 */
 img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: black !important;
-  background-color: rgb(150,150,150) !important;
+  filter: invert(100%) !important;
 }
-/*
-It can happen that an <img> tag is a child of <body>.
-In that case it is probably gonna be just smth light.
-*/
-body > img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  background-color: rgb(27, 27, 27) !important;
-}
+
 /*
 <canvas> can be used to present text! Example:
 https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
-Since the extension sets a page into dark mode only if the page is presumably in light mode by default,
-the canvases will probably contain some dark text on a light background. We cant change the canvas' content
-with CSS, so apply some dark-grey background to it. The content shall be still readable in most cases.
+Filter as images.
 */
 canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  background-color: rgb(50,50,50) !important;
+  filter: invert(100%) !important;
 }
 
 /*
@@ -103,18 +99,23 @@ h4:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 h5:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 h6:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   opacity: 1 !important;
+  background-color: rgb(27, 27, 27) !important;
 }
-
+/*
+Just some anchor colors which look good for me on defined background.
+*/
 a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: #3085C3 !important;
   opacity: 1 !important;
 }
-
 a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: #DA0C81 !important;
   opacity: 1 !important;
 }
-/* Do not set just span to anything, it would corrupt some stuff */
+/*
+Do not set just span to anything, it would corrupt some stuff.
+::before and ::after are used for styling and are not set be general rule from above.
+*/
 span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
 span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after{
   color: white !important;
@@ -124,12 +125,16 @@ li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
 span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a{
   background: rgb(27, 27, 27) !important;
 }
-
+/*
+Mark the borders of input to make it easier for users to identify it.
+*/
 input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   border: red solid 1px !important;
   border-radius: 5px;
 }
-
+/*
+Mark the borders of textarea to make it easier for users to identify it.
+*/
 textarea:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   border: rgb(0, 255, 255) solid 1px !important;
   border-radius: 5px;
