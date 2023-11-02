@@ -74,9 +74,26 @@ img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
   color: black !important;
   background-color: rgb(150,150,150) !important;
 }
+/*
+It can happen that an <img> tag is a child of <body>.
+In that case it is probably gonna be just smth light.
+*/
+body > img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+  background-color: rgb(27, 27, 27) !important;
+}
+/*
+<canvas> can be used to present text! Example:
+https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
+Since the extension sets a page into dark mode only if the page is presumably in light mode by default,
+the canvases will probably contain some dark text on a light background. We cant change the canvas' content
+with CSS, so apply some dark-grey background to it. The content shall be still readable in most cases.
+*/
+canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+  background-color: rgb(50,50,50) !important;
+}
 
 /*
-Here are the definitions for all tags, which contain text.
+Here are the definitions for all tags, which can contain text.
 */
 p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 h1:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
