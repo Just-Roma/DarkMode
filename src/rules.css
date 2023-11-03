@@ -22,14 +22,45 @@ So, the decision was made to make all elements transparent. That shall at least 
 that the main content won't be accidentally hidden. That comes at a price: some holders,
 which are a normal part of content, will be partially transparent. That would make the
 page look worse and diminish readability of internal content to some extent.
-
-First set common properties for all tags, which are not in :not(...)
 */
-:not(:is(head, link, style, title, meta, base, br, wbr, script, noscript, progress, iframe, embed, object, portal, source, #MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)){
-  color: white !important;
-  background-color: transparent !important;
+
+/* Declare some vars for easier manipulation of web pages' appearance.
+--common-bg-color will be used to set background-color. Some nice looking alternatives:
+  (17, 25, 39), (22, 33, 42), (40, 0, 39)
+--common-txt-color is pretty self-explanatory. It is used as the main/non-specific text color.
+--common-border-radius for rounding corners of borders.
+--special-anchor-link for anchors(links), which were not yet visited.
+--special-anchor-visited for anchors(links), which were already visited.
+--special-alt-txt-img for alternative text color for images. Shall be smth darkish (eg the opposite of --common-txt-color).
+--special-input-border for the borders of <input> tags.
+--special-textarea-border for the borders of <textarea> tags.
+*/
+:root {
+  --common-bg-color: rgb(27, 27, 27);
+  --common-txt-color: white;
+  --common-border-radius: 5px;
+  --special-anchor-link: #3085C3;
+  --special-anchor-visited: #DA0C81;
+  --special-alt-txt-img: black;
+  --special-input-border: red solid 2px;
+  --special-textarea-border: rgb(0, 255, 255) solid 2px;
 }
 
+
+/***************************************************************************
+
+************************    Common definitions   ***************************
+
+***************************************************************************/
+
+/*
+Set common properties for all tags, which are not in :not(...)
+*/
+:not(:is(head, link, style, title, meta, base, br, wbr, script, noscript, progress, iframe, embed, object, portal, source, #MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb))
+{
+  color: var(--common-txt-color) !important;
+  background-color: transparent !important;
+}
 /*
 Set dark background to some elements-containers. It seems to be impossible to target anonym boxes with CSS,
 so all <div> tags get dark background (eg anonymous box  <div>some txt, which will be anonym</div>).
@@ -45,13 +76,41 @@ article:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 footer:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 ul:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  background-color: rgb(27, 27, 27) !important;
+div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  background-color: var(--common-bg-color) !important;
 }
 /*
-Empty divs can sometimes overlay content. Obviously they dont hold anything, so make them transparent.
+To guarantee that they won't overlap with text behind them if
+they are placed in some container above some other container.
 */
-div:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h1:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h2:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h3:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h4:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h5:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+h6:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  opacity: 1 !important;
+  background-color: var(--common-bg-color) !important;
+}
+
+
+/***************************************************************************
+
+************************   Specific definitions  ***************************
+
+***************************************************************************/
+
+
+/*
+************************   <div>   ***************************
+*/
+/* Empty divs can sometimes overlay content. Obviously they dont hold anything, so make them transparent.
+*/
+div:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
   background-color: transparent !important;
 }
 /*
@@ -60,82 +119,94 @@ The rule means this: select parent <div>s, which have one/several <div> children
 Such divs can also overlay content, so it is better to make them transparent, though it would make the
 overall appearance of a page worse sometimes.
 */
-div:has(>div):not(:has(>:not(div))):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+div:has(>div):not(:has(>:not(div))):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
   background-color: transparent !important;
 }
-/*
-If <div> tag has any child that is not <div>, then remove any background images, since these can be white.
+/* If <div> tag has any child that is not <div>, then remove any background images, since these can be white.
 */
-div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
   background-image: none !important;
 }
 
 /*
-Inverting the color of images shall do a good job in most cases.
-color property is set to black because it will be inverted to white for alt text.
+************************   <img>   ***************************
 */
-img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  color: black !important;
+/* Inverting the color of images shall do a good job in most cases.
+*/
+img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  color: var(--special-alt-txt-img) !important;
   filter: invert(100%) !important;
 }
 
 /*
-<canvas> can be used to present text! Example:
+************************   <canvas>   ***************************
+*/
+/* <canvas> can be used to present text! Example:
 https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
 Filter as images.
 */
-canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
   filter: invert(100%) !important;
 }
 
 /*
-Here are the definitions for all tags, which can contain text.
+************************   <a>   ***************************
 */
-p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h1:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h2:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h3:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h4:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h5:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-h6:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
+a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  color: var(--special-anchor-link) !important;
   opacity: 1 !important;
-  background-color: rgb(27, 27, 27) !important;
 }
-/*
-Just some anchor colors which look good for me on defined background.
+a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  color: var(--special-anchor-visited) !important;
+  opacity: 1 !important;
+}
+/* A link can be placed in some elements and get light background for some reason.
+Examples:
+https://wiki.owasp.org/index.php/OWASP_favicon_database
+https://en.wiktionary.org/wiki/list
 */
-a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  color: #3085C3 !important;
-  opacity: 1 !important;
+li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
+span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a
+{
+  background: var(--common-bg-color) !important;
 }
-a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  color: #DA0C81 !important;
-  opacity: 1 !important;
-}
+
 /*
-Do not set just span to anything, it would corrupt some stuff.
+************************   <span>   ***************************
+*/
+/* Do not set just span to anything, it would corrupt some stuff.
 ::before and ::after are used for styling and are not set be general rule from above.
 */
 span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
-span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after{
+span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
+{
   color: white !important;
 }
 
-li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
-span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a{
-  background: rgb(27, 27, 27) !important;
-}
 /*
-Mark the borders of input to make it easier for users to identify it.
+************************   <input>   ***************************
 */
-input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  border: red solid 1px !important;
-  border-radius: 5px;
+/* Mark the borders of input to make it easier for users to identify it.
+*/
+input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  border: var(--special-input-border) !important;
+  border-radius: var(--common-border-radius) !important;
 }
+
 /*
-Mark the borders of textarea to make it easier for users to identify it.
+************************   <textarea>   ***************************
 */
-textarea:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb){
-  border: rgb(0, 255, 255) solid 1px !important;
-  border-radius: 5px;
+/* Mark the borders of textarea to make it easier for users to identify it.
+*/
+textarea:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  border: var(--special-textarea-border) !important;
+  border-radius: var(--common-border-radius) !important;
 }
