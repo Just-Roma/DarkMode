@@ -178,6 +178,17 @@ span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a
 }
 
 /*
+************************   <li>   ***************************
+*/
+/* ::before and ::after are used for styling and are not set be general rule from above.
+*/
+li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
+li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
+{
+  color: white !important;
+}
+
+/*
 ************************   <span>   ***************************
 */
 /* Do not set just span to anything, it would corrupt some stuff.
