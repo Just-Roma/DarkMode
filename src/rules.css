@@ -156,12 +156,14 @@ canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 /*
 ************************   <a>   ***************************
 */
-a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) *
 {
   color: var(--special-anchor-link) !important;
   opacity: 1 !important;
 }
-a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) *
 {
   color: var(--special-anchor-visited) !important;
   opacity: 1 !important;
