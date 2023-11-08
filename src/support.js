@@ -111,28 +111,34 @@
       */
       let main = null;
       /*
-      Presumably such tag would be the largest one. So we'll calculate the area.
-      Also check that a tag is truly within body, because it is possible to
-      move a tag beyond the visible area on the screen.
+      Presumably such tag would be the largest one can be placed in the depth of DOM.
+      So we'll go recursevely and calculate the area. Also check that a tag is truly
+      within body, because it is possible to move a tag beyond the visible area on the screen.
       */
       let size_of_main = 0;
       const position_of_body = BODY.getBoundingClientRect();
 
-      for (const element of BODY.children){
-        const element_style = getComputedStyle(element);
-        if (element_style['display'] != 'none'){
-          const position = element.getBoundingClientRect();
-          if (position['x']      >= position_of_body['x']      &&
-              position['y']      >= position_of_body['y']      &&
-              position['width']  <= position_of_body['width']  &&
-              position['height'] <= position_of_body['height'] &&
-              position['width'] * position['height'] > size_of_main
-             ){
-              main = element;
-              size_of_main = position['width'] * position['height'];
+      function check_element(tag){
+        for (const element of tag.children){
+          const element_style = getComputedStyle(element);
+          if (element_style['display'] != 'none' && element.getBoundingClientRect){
+            const position = element.getBoundingClientRect();
+            if (position['x']      >= position_of_body['x']      &&
+                position['y']      >= position_of_body['y']      &&
+                position['width']  <= position_of_body['width']  &&
+                position['height'] <= position_of_body['height'] &&
+                position['width'] * position['height'] >= size_of_main
+               ){
+                main = element;
+                size_of_main = position['width'] * position['height'];
+            }
           }
+          check_element(element);
         }
+
       }
+      check_element(BODY);
+
       return main;
     }
   }
