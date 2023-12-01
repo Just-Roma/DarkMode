@@ -61,6 +61,14 @@ Set common properties for all tags, which are not in :not(...)
   color: var(--common-txt-color) !important;
   background-color: transparent !important;
 }
+
+/*
+Remove background images for firefox.
+*/
+body{
+  background-image: none !important;
+}
+
 /*
 Set dark background to some elements-containers. It seems to be impossible to target anonym boxes with CSS,
 so all <div> tags get dark background (eg anonymous box  <div>some txt, which will be anonym</div>).
