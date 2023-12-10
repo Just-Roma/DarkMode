@@ -118,7 +118,16 @@
       let size_of_main = 0;
       const position_of_body = BODY.getBoundingClientRect();
 
+      const EXCLUDED_TAGS = [
+        'HEADER','NAV','ASIDE','FOOTER','P','A','H1','H2','H3','H4','H5','H6',
+        'DL','OL','UL','SPAN','HGROUP','SEARCH','BLOCKQUOTE','MENU','PRE','ABBR','CITE','CODE','DATA','Q',
+        'TIME','BUTTON','DATALIST','FIELDSET','FORM','INPUT','LABEL','METER','OUTPUT','SELECT','TEXTAREA',
+        'SVG','IMG','MATH','CANVAS','TABLE','DETAILS','DIALOG','SUMMARY','AREA','AUDIO','MAP','VIDEO',
+        'EMBED','IFRAME','PICTURE','OBJECT',
+      ];
+
       function check_element(tag){
+        if (EXCLUDED_TAGS.includes(tag.tagName)) return;
         for (const element of tag.children){
           const element_style = getComputedStyle(element);
           if (element_style['display'] != 'none' && element.getBoundingClientRect){
