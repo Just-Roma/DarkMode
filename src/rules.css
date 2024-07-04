@@ -63,9 +63,11 @@ Set common properties for all tags, which are not in :not(...)
 }
 
 /*
-Remove background images for firefox.
+Remove background images for body and html.
 */
-body{
+html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
   background-image: none !important;
 }
 
