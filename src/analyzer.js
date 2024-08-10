@@ -49,6 +49,7 @@
       Tries to find the container tag within body, which holds the main content.
       */
       function recurse_dom(element){
+        if (!(element instanceof HTMLElement)) return; // Safety measure
         for (const _element of element.children){
           if (SUPPORT.element_is_not_transparent(_element, ALPHA_THRESHOLD)) update_main_inner_container(_element);
           recurse_dom(_element);
