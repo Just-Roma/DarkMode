@@ -62,6 +62,9 @@ Set common properties for all tags, which are not in :not(...)
   background-color: transparent !important;
 }
 
+/*
+Remove background images for body and html.
+*/
 html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
