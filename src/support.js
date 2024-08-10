@@ -4,17 +4,15 @@
 (() => {
   if (window.support_script_injected != true){
     window.support_script_injected = true;
+
     window.HTML = document.documentElement;
     window.BODY = document.body;
-    window.MAIN_CONTAINER = find_main_container();
 
-    window.RGB_THRESHOLD = [60, 60, 60];
-    window.ALPHA_THRESHOLD = 0.5;
-    window.support = {}; // Object with common specific functionality.
+    window.SUPPORT = {}; // Object with common specific functionality.
 
     class Support{
       /*
-      Wrapper for common methods used by the main.js
+      Wrapper for common methods.
       */
       constructor(){
         // i flag to make case-insensitive. It won't hurt.
@@ -58,7 +56,7 @@
         if (r <= R && g <= G && b <= B){
           return true;
         }
-        else{
+        else {
           return false;
         }
       }
@@ -102,53 +100,16 @@
           return rgb_is_dark;
         }
       }
-    }
-    support = new Support();
 
-    function find_main_container(){
-      /*
-      Tries to find the container tag within body, which holds the main content.
-      */
-      let main = null;
-      /*
-      Presumably such tag would be the largest one can be placed in the depth of DOM.
-      So we'll go recursevely and calculate the area. Also check that a tag is truly
-      within body, because it is possible to move a tag beyond the visible area on the screen.
-      */
-      let size_of_main = 0;
-      const position_of_body = BODY.getBoundingClientRect();
-
-      const EXCLUDED_TAGS = [
-        'HEADER','NAV','ASIDE','FOOTER','P','A','H1','H2','H3','H4','H5','H6',
-        'DL','OL','UL','SPAN','HGROUP','SEARCH','BLOCKQUOTE','MENU','PRE','ABBR','CITE','CODE','DATA','Q',
-        'TIME','BUTTON','DATALIST','FIELDSET','FORM','INPUT','LABEL','METER','OUTPUT','SELECT','TEXTAREA',
-        'SVG','IMG','MATH','CANVAS','TABLE','DETAILS','DIALOG','SUMMARY','AREA','AUDIO','MAP','VIDEO',
-        'EMBED','IFRAME','PICTURE','OBJECT',
-      ];
-
-      function check_element(tag){
-        if (EXCLUDED_TAGS.includes(tag.tagName)) return;
-        for (const element of tag.children){
-          const element_style = getComputedStyle(element);
-          if (element_style['display'] != 'none' && element.getBoundingClientRect){
-            const position = element.getBoundingClientRect();
-            if (position['x']      >= position_of_body['x']      &&
-                position['y']      >= position_of_body['y']      &&
-                position['width']  <= position_of_body['width']  &&
-                position['height'] <= position_of_body['height'] &&
-                position['width'] * position['height'] >= size_of_main
-               ){
-                main = element;
-                size_of_main = position['width'] * position['height'];
-            }
-          }
-          check_element(element);
-        }
-
+      element_is_not_transparent(element, alpha_threshold){
+        /*
+        Check if the given element is transparent based on the provided alpha_threshold.
+        */
+        const rgba = this.extract_rgba(getComputedStyle(element)['background-color']);
+        if (rgba[3] && rgba[3] <= alpha_threshold) return false;
+        else return true;
       }
-      check_element(BODY);
-
-      return main;
     }
+    SUPPORT = new Support();
   }
 })();
