@@ -106,7 +106,7 @@
         Check if the given element is transparent based on the provided alpha_threshold.
         */
         const rgba = this.extract_rgba(getComputedStyle(element)['background-color']);
-        if (rgba[3] && rgba[3] <= alpha_threshold) return false;
+        if (rgba[3] && rgba[3] < alpha_threshold) return false;
         else return true;
       }
     }

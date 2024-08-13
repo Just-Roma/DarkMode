@@ -42,19 +42,18 @@ page look worse and diminish readability of internal content to some extent.
   --special-anchor-link: #3085C3;
   --special-anchor-visited: #DA0C81;
   --special-alt-txt-img: black;
-  --special-input-border: red solid 2px;
+  --special-input-border: rgb(27, 27, 200) solid 2px;
   --special-textarea-border: rgb(0, 255, 255) solid 2px;
 }
 
 
 /***************************************************************************
 
-************************    Common definitions   ***************************
+                           Common definitions
 
 ***************************************************************************/
 
-/*
-Set common properties for all tags, which are not in :not(...)
+/* Set common properties for all tags, which are not in :not(...)
 */
 :not(:is(head, link, style, title, meta, base, br, wbr, script, noscript, progress, iframe, embed, object, portal, source, #MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb))
 {
@@ -62,39 +61,71 @@ Set common properties for all tags, which are not in :not(...)
   background-color: transparent !important;
 }
 
-/*
-Remove background images for body and html.
+
+
+/***************************************************************************
+
+For an easier navigation and improved readability all specific definitions
+are put in their own corresponding blocks.
+
+***************************************************************************/
+
+
+
+/***************************************************************************
+
+                                    html
+
+***************************************************************************/
+
+/* Remove background images for body and html and set --common-bg-color background.
 */
-html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  background-image: none !important;
+  background-color: var(--common-bg-color) !important;
+}
+
+
+
+/***************************************************************************
+
+                                    body
+
+***************************************************************************/
+
 body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
   background-image: none !important;
-}
-
-/*
-Set dark background to some elements-containers. It seems to be impossible to target anonym boxes with CSS,
-so all <div> tags get dark background (eg anonymous box  <div>some txt, which will be anonym</div>).
-*/
-html:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-body:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-header:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-nav:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-aside:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-main:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-section:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-article:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-footer:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-ul:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
-{
   background-color: var(--common-bg-color) !important;
 }
-/*
-To guarantee that they won't overlap with text behind them if
-they are placed in some container above some other container.
+
+
+
+/***************************************************************************
+
+                                    p
+
+***************************************************************************/
+
+/* To guarantee that it won't overlap with text behind them if they are placed in some container on top of some other container.
 */
-p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
+p:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  opacity: 1 !important;
+  background-color: var(--common-bg-color) !important;
+}
+
+
+
+/***************************************************************************
+
+                          h1, h2, h3, h4, h5, h6
+
+***************************************************************************/
+
+/* To guarantee that they won't overlap with text behind them if they are placed in some container on top of some other container.
+*/
 h1:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 h2:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 h3:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
@@ -107,24 +138,28 @@ h6:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 }
 
 
+
 /***************************************************************************
 
-************************   Specific definitions  ***************************
+                                  div
 
 ***************************************************************************/
 
-
-/*
-************************   <div>   ***************************
+/* It seems to be impossible to target anonym boxes with CSS, so all <div> tags get dark background (eg anonymous box  <div>some txt, which will be anonym</div>).
 */
+div:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  background-color: var(--common-bg-color) !important;
+}
+
 /* Empty divs can sometimes overlay content. Obviously they dont hold anything, so make them transparent.
 */
 div:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
   background-color: transparent !important;
 }
-/*
-Separate from above because it seems that putting them together invalidates all rules in firefox.
+
+/* Separate from above because it seems that putting them together invalidates all rules in firefox.
 The rule means this: select parent <div>s, which have one/several <div> children but do not have anything else.
 Such divs can also overlay content, so it is better to make them transparent, though it would make the
 overall appearance of a page worse sometimes.
@@ -133,6 +168,7 @@ div:has(>div):not(:has(>:not(div))):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC
 {
   background-color: transparent !important;
 }
+
 /* If <div> tag has any child that is not <div>, then remove any background images, since these can be white.
 */
 div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
@@ -140,9 +176,14 @@ div:has(>:not(div)):not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
   background-image: none !important;
 }
 
-/*
-************************   <img>   ***************************
-*/
+
+
+/***************************************************************************
+
+                                   img
+
+***************************************************************************/
+
 /* Inverting the color of images shall do a good job in most cases.
 */
 img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
@@ -151,9 +192,14 @@ img:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
   filter: invert(100%) !important;
 }
 
-/*
-************************   <canvas>   ***************************
-*/
+
+
+/***************************************************************************
+
+                                 canvas
+
+***************************************************************************/
+
 /* <canvas> can be used to present text! Example:
 https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
 Filter as images.
@@ -163,36 +209,63 @@ canvas:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
   filter: invert(100%) !important;
 }
 
-/*
-************************   <a>   ***************************
+
+
+/***************************************************************************
+
+                                    a
+
+***************************************************************************/
+
+/* A link can be placed in some elements and get light background for some reason.
+Examples:
+https://wiki.owasp.org/index.php/OWASP_favicon_database
+https://en.wiktionary.org/wiki/list
 */
-a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
-a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) *
+a:link:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
   color: var(--special-anchor-link) !important;
+  background-color: var(--common-bg-color) !important;
   opacity: 1 !important;
 }
+
 a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb),
 a:visited:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) *
 {
   color: var(--special-anchor-visited) !important;
   opacity: 1 !important;
 }
-/* A link can be placed in some elements and get light background for some reason.
-Examples:
-https://wiki.owasp.org/index.php/OWASP_favicon_database
-https://en.wiktionary.org/wiki/list
+
+/* Empty link has a good chance of having some background img.
+This rule must be placed after the previous one to preserve the transparency.
 */
-li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a,
-span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb) > a
+a:empty:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
-  background: var(--common-bg-color) !important;
+  filter: invert(100%) !important;
+  background-color: transparent !important;
 }
 
-/*
-************************   <li>   ***************************
-*/
-/* ::before and ::after are used for styling and are not set be general rule from above.
+
+/***************************************************************************
+
+                                       ul
+
+***************************************************************************/
+
+ul:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  background-color: var(--common-bg-color) !important;
+}
+
+
+
+/***************************************************************************
+
+                                       li
+
+***************************************************************************/
+
+/* ::before and ::after are used for styling and are not set by the general rule from above.
 */
 li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
 li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
@@ -200,9 +273,30 @@ li:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
   color: white !important;
 }
 
-/*
-************************   <span>   ***************************
+
+
+/***************************************************************************
+
+                                   i
+
+***************************************************************************/
+
+/* ::before and ::after are used for styling and are not set by the general rule from above.
 */
+i:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::before,
+i:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
+{
+  color: white !important;
+}
+
+
+
+/***************************************************************************
+
+                                   span
+
+***************************************************************************/
+
 /* Do not set just span to anything, it would corrupt some stuff.
 ::before and ::after are used for styling and are not set be general rule from above.
 */
@@ -212,10 +306,15 @@ span:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)::after
   color: white !important;
 }
 
-/*
-************************   <input>   ***************************
-*/
-/* Mark the borders of input to make it easier for users to identify it.
+
+
+/***************************************************************************
+
+                                   input
+
+***************************************************************************/
+
+/* Mark the borders to make it easier for users to identify it.
 */
 input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
@@ -223,13 +322,31 @@ input:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
   border-radius: var(--common-border-radius) !important;
 }
 
-/*
-************************   <textarea>   ***************************
-*/
-/* Mark the borders of textarea to make it easier for users to identify it.
+
+
+/***************************************************************************
+
+                                   textarea
+
+***************************************************************************/
+
+/* Mark the borders to make it easier for users to identify it.
 */
 textarea:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
 {
   border: var(--special-textarea-border) !important;
   border-radius: var(--common-border-radius) !important;
+}
+
+
+
+/***************************************************************************
+
+                                    select
+
+***************************************************************************/
+
+select:not(#MP_XbCmavQ_WbhlOotaRDqFo_gdREhSLkPcxXVC_PZFWKcMUSb)
+{
+  background-color: var(--common-bg-color) !important;
 }

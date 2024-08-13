@@ -21,13 +21,12 @@
       /*
       Try to detect if web page is already in a dark mode. If that is the case, return true, otherwise false.
 
-      First check the main container. It holds the major content.
-      If it is not possible to detect whether it is dark or not, check the body.
-      If also did not work, check the html.
+      First check the main outer/inner containers. They hold the major content.
+      If it is not possible to detect whether it is dark or not, check the body. If also did not work, check the html.
       */
       for (const element of [MAIN_INNER_CONTAINER, MAIN_OUTER_CONTAINER, BODY, HTML]){
-        // check if not null, because MAIN_INNER_CONTAINER can be null.
-        if (element != null){
+        // Check if vars are elements, because they can be non-existent.
+        if (element instanceof HTMLElement){
           const element_is_dark = SUPPORT.has_dark_background(element, RGB_THRESHOLD, ALPHA_THRESHOLD);
           if (element_is_dark != null){
             if (element_is_dark){
