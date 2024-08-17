@@ -39,6 +39,8 @@ page look worse and diminish readability of internal content to some extent.
   --common-bg-color: rgb(27, 27, 27);
   --common-txt-color: white;
   --common-border-radius: 5px;
+  --common-scrollbar-color: rgb(19, 75, 112) rgb(27, 27, 27);
+  --common-scrollbar-width: thin;
   --special-anchor-link: #3085C3;
   --special-anchor-visited: #DA0C81;
   --special-alt-txt-img: black;
@@ -59,6 +61,8 @@ page look worse and diminish readability of internal content to some extent.
 {
   color: var(--common-txt-color) !important;
   background-color: transparent !important;
+  scrollbar-color: var(--common-scrollbar-color) !important;
+  scrollbar-width: var(--common-scrollbar-width) !important;
 }
 
 
