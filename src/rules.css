@@ -62,7 +62,7 @@ page look worse and diminish readability of internal content to some extent.
   color: var(--common-txt-color) !important;
   background-color: transparent !important;
   scrollbar-color: var(--common-scrollbar-color) !important;
-  scrollbar-width: var(--common-scrollbar-width) !important;
+  /*scrollbar-width: var(--common-scrollbar-width) !important;*/
 }
 
 
